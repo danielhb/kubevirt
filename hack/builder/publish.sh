@@ -17,10 +17,10 @@ cleanup() {
 cleanup
 
 for ARCH in ${ARCHITECTURES}; do
-    docker push kubevirt/builder:${VERSION}-${ARCH}
-    TMP_IMAGES="${TMP_IMAGES} kubevirt/builder:${VERSION}-${ARCH}"
+    docker push danielhb/kubevirt-builder:${VERSION}-${ARCH}
+    TMP_IMAGES="${TMP_IMAGES} danielhb/kubevirt-builder:${VERSION}-${ARCH}"
 done
 
 export DOCKER_CLI_EXPERIMENTAL=enabled
-docker manifest create --amend kubevirt/builder:${VERSION} ${TMP_IMAGES}
-docker manifest push kubevirt/builder:${VERSION}
+docker manifest create --amend danielhb/kubevirt-builder:${VERSION} ${TMP_IMAGES}
+docker manifest push danielhb/kubevirt-builder:${VERSION}

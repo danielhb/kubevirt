@@ -343,10 +343,11 @@ container_pull(
 # TODO: Update this once we have PPC builds of the base image available
 container_pull(
     name = "libvirt_ppc64le",
-    digest = "sha256:NOT_AVAILABLE",  # Make sure we don't use outdated image by mistake
-    puller_linux = "@go_puller_linux_ppc64le//file:downloaded",
+    #digest = "sha256:NOT_AVAILABLE",  # Make sure we don't use outdated image by mistake
+    #puller_linux = "@go_puller_linux_ppc64le//file:downloaded",
+    digest = "sha256:b2b9db23ccf36a10e5c1c896d4ab3b66ac82bd3f62e122c63e078833cd17c51d",
     registry = "index.docker.io",
-    repository = "kubevirt/libvirt",
+    repository = "danielhb/kubevirt-libvirt-ppc64le",
 )
 
 # Pull kubevirt-testing image

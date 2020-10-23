@@ -22,6 +22,9 @@ if [ -z ${KUBEVIRT_CRI} ]; then
     fi
 fi
 
+
+# image url: 
+# https://hub.docker.com/layers/kubevirt/builder/30-9.0.3/images/sha256-756e317913e2e5c4f342ff4cd5319bc504286bc52ca7aead3337d79182d11b46?context=explore
 KUBEVIRT_BUILDER_IMAGE="kubevirt/builder@sha256:756e317913e2e5c4f342ff4cd5319bc504286bc52ca7aead3337d79182d11b46"
 
 SYNC_OUT=${SYNC_OUT:-true}

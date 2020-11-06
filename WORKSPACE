@@ -77,6 +77,23 @@ http_file(
     ],
 )
 
+# Libvirt dependencies (ppc64le)
+http_file(
+    name = "libvirt_libs_ppc64le",
+    sha256 = "97ebff5341954e7e0bb501dd13a715d7ecfc50a30db25e6af1049c37a27929b4",
+    urls = [
+        "https://download-ib01.fedoraproject.org/pub/fedora-secondary/releases/32/Everything/ppc64le/os/Packages/l/libvirt-libs-6.1.0-2.fc32.ppc64le.rpm",
+    ],
+)
+
+http_file(
+    name = "libvirt_devel_ppc64le",
+    sha256 = "253c238e7440ce6213490e0acd14b5f037f806fe7277319133eb2183a7d8f69c",
+    urls = [
+        "https://download-ib01.fedoraproject.org/pub/fedora-secondary/releases/32/Everything/ppc64le/os/Packages/l/libvirt-devel-6.1.0-2.fc32.ppc64le.rpm",
+    ],
+)
+
 # Disk images
 http_file(
     name = "alpine_image",
@@ -340,14 +357,25 @@ container_pull(
     #tag = "av-8.2-20200629-e049c89",
 )
 
-# TODO: Update this once we have PPC builds of the base image available
+#TODO: Update this once we have PPC builds of the base image available
+#container_pull(
+#    name = "libvirt_ppc64le",
+#    digest = "sha256:NOT_AVAILABLE",  # Make sure we don't use outdated image by mistake
+#    puller_linux = "@go_puller_linux_ppc64le//file:downloaded",
+#    digest = "sha256:b2b9db23ccf36a10e5c1c896d4ab3b66ac82bd3f62e122c63e078833cd17c51d",
+#    registry = "index.docker.io",
+#    repository = "danielhb/kubevirt-libvirt-ppc64le",
+#)
+
+# kubevirt-libvirt-ppc64le from danielhb
 container_pull(
     name = "libvirt_ppc64le",
-    digest = "sha256:NOT_AVAILABLE",  # Make sure we don't use outdated image by mistake
+    digest = "sha256:b2b9db23ccf36a10e5c1c896d4ab3b66ac82bd3f62e122c63e078833cd17c51d",
     puller_linux = "@go_puller_linux_ppc64le//file:downloaded",
     registry = "index.docker.io",
-    repository = "kubevirt/libvirt",
+    repository = "danielhb/kubevirt-libvirt-ppc64le",
 )
+
 
 # Pull kubevirt-testing image
 container_pull(
@@ -485,10 +513,13 @@ http_file(
 
 http_file(
     name = "capstone_ppc64le",
-    sha256 = "d835db14b1dda9601cd208edeed76cffd3b14de37330684e9ec751e67b0827cf",
+    sha256 = "af2d870bc3813b8241e3eaa8c469e1c904d4e9ffe81e8d8ba4d4d5c5c7dd60ab",
+    #   urls = [
+    #       "https://dl.fedoraproject.org/pub/fedora-secondary/releases/31/Everything/ppc64le/os/Packages/c/capstone-4.0.1-4.fc31.ppc64le.rpm",
+    #       "https://storage.googleapis.com/builddeps/d835db14b1dda9601cd208edeed76cffd3b14de37330684e9ec751e67b0827cf",
+    #    ],
     urls = [
-        "https://dl.fedoraproject.org/pub/fedora-secondary/releases/31/Everything/ppc64le/os/Packages/c/capstone-4.0.1-11.fc31.ppc64le.rpm",
-        "https://storage.googleapis.com/builddeps/d835db14b1dda9601cd208edeed76cffd3b14de37330684e9ec751e67b0827cf",
+        "https://dl.fedoraproject.org/pub/fedora-secondary/releases/31/Everything/ppc64le/os/Packages/c/capstone-4.0.1-4.fc31.ppc64le.rpm",
     ],
 )
 
@@ -558,11 +589,14 @@ http_file(
 
 http_file(
     name = "pixman-1_ppc64le",
-    sha256 = "f29e86dcaeadaeb5ecb12e5a4f2d447e711f4bf1513b8923a63e69fa1d4f0f66",
+    sha256 = "ea253d98a44922a6307bbddf1e48984d8fae1d347516ef16fe4fdcb2511aedcd",
     urls = [
-        "https://dl.fedoraproject.org/pub/fedora-secondary/releases/31/Everything/ppc64le/os/Packages/p/pixman-0.38.4-1.fc31.x86_64.rpm",
-        "https://storage.googleapis.com/builddeps/f29e86dcaeadaeb5ecb12e5a4f2d447e711f4bf1513b8923a63e69fa1d4f0f66",
+        "https://dl.fedoraproject.org/pub/fedora-secondary/releases/31/Everything/ppc64le/os/Packages/p/pixman-0.38.4-1.fc31.ppc64le.rpm",
     ],
+    #        urls = [
+    #        "https://dl.fedoraproject.org/pub/fedora-secondary/releases/31/Everything/ppc64le/os/Packages/p/pixman-0.38.4-1.fc31.ppc64le.rpm",
+    #        "https://storage.googleapis.com/builddeps/f29e86dcaeadaeb5ecb12e5a4f2d447e711f4bf1513b8923a63e69fa1d4f0f66",
+    #    ],
 )
 
 http_file(

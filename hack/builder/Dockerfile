@@ -89,6 +89,9 @@ RUN set -x && \
     rm -rf /test-infra && \
     rm -rf /go && mkdir /go
 
+# for pip3 and bazel
+RUN dnf -y install python-unversioned-command python3-pip
+
 RUN pip3 install --upgrade j2cli operator-courier==1.3.0
 
 ENV SONOBUOY_VERSION=0.19.0
@@ -104,6 +107,17 @@ COPY entrypoint.sh /entrypoint.sh
 
 COPY create_bazel_cache_rcs.sh /create_bazel_cache_rcs.sh
 
-RUN curl -L -o /usr/bin/bazel https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-linux-x86_64 && chmod u+x /usr/bin/bazel
+COPY bazel3-3.7.0-0.fc32.ppc64le.rpm /bazel3-3.7.0-0.fc32.ppc64le.rpm
+
+RUN rpm -ivh bazel3-3.7.0-0.fc32.ppc64le.rpm && \
+    rm bazel3-3.7.0-0.fc32.ppc64le.rpm
+
+# /usr/bin/bazel is a wrapper, and bazel-real is the actual binary. use the
+# binary instead. 
+RUN mv /usr/bin/bazel /usr/bin/bazel-wrapper && \
+    mv /usr/bin/bazel-real /usr/bin/bazel && \
+    chmod u+x /usr/bin/bazel
+
+# RUN curl -L -o /usr/bin/bazel https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-linux-x86_64 && chmod u+x /usr/bin/bazel
 
 ENTRYPOINT [ "/entrypoint.sh" ]

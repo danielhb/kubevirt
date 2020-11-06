@@ -168,7 +168,7 @@ genrule(
         "@io_bazel_rules_go//go/platform:linux_ppc64le": "\n".join([
             "rpm2archive $(location @libvirt_devel_ppc64le//file)",
             "tar -xzf $(location @libvirt_devel_ppc64le//file).tgz",
-            "cp -R usr/include/libvirt $(@D)",
+            "cp -R usr/include/libvirt/* $(@D)",
         ]),
         "//conditions:default": "\n".join([
             "rpm2archive $(location @libvirt_devel//file)",
@@ -248,7 +248,8 @@ container_bundle(
         "$(container_prefix)/$(image_prefix)microlivecd-container-disk-demo:$(container_tag)": "//containerimages:microlivecd-container-disk-image",
         "$(container_prefix)/$(image_prefix)virtio-container-disk:$(container_tag)": "//containerimages:virtio-container-disk-image",
         # Customized container-disk images
-        "$(container_prefix)/$(image_prefix)fedora-sriov-lane-container-disk:$(container_tag)": "//containerimages:fedora-sriov-lane-container-disk-image",
+        # this one is not available for ppc64
+        # "$(container_prefix)/$(image_prefix)fedora-sriov-lane-container-disk:$(container_tag)": "//containerimages:fedora-sriov-lane-container-disk-image",
         # testing images
         "$(container_prefix)/$(image_prefix)disks-images-provider:$(container_tag)": "//images/disks-images-provider:disks-images-provider-image",
         "$(container_prefix)/$(image_prefix)cdi-http-import-server:$(container_tag)": "//images/cdi-http-import-server:cdi-http-import-server-image",

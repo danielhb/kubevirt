@@ -65,7 +65,7 @@ container_image(
     name = "microlivecd-container-disk-image",
     directory = "/disk",
     files = select({
-        "@io_bazel_rules_go//go/platform:linux_ppc64le": ["@microlivecd_image_ppc64le//file"],
+        "@io_bazel_rules_go//go/platform:linux_ppc64le": ["@microlivecd_image_ppc64el//file"],
         "//conditions:default": ["@microlivecd_image//file"],
     }),
     mode = "444",

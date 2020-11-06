@@ -376,7 +376,6 @@ container_pull(
     repository = "danielhb/kubevirt-libvirt-ppc64le",
 )
 
-
 # Pull kubevirt-testing image
 container_pull(
     name = "kubevirt-testing",

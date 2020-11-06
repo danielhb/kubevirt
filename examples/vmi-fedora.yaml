@@ -3,8 +3,8 @@ apiVersion: kubevirt.io/v1alpha3
 kind: VirtualMachineInstance
 metadata:
   labels:
-    special: vmi-fedora
-  name: vmi-fedora
+    special: vmi-fedora2
+  name: vmi-fedora2
 spec:
   domain:
     devices:
@@ -24,7 +24,8 @@ spec:
   terminationGracePeriodSeconds: 0
   volumes:
   - containerDisk:
-      image: registry:5000/kubevirt/fedora-cloud-container-disk-demo:devel
+    #      image: registry:5000/kubevirt/fedora-cloud-container-disk-demo:devel
+      image: danielhb/fedora-cloud-container-disk-demo:latest
     name: containerdisk
   - cloudInitNoCloud:
       userData: |-

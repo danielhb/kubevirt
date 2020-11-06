@@ -20,5 +20,6 @@ spec:
   terminationGracePeriodSeconds: 0
   volumes:
   - containerDisk:
-      image: registry:5000/kubevirt/cirros-container-disk-demo:devel
+#      image: registry:5000/kubevirt/cirros-container-disk-demo:devel
+      image: danielhb/cirros-container-disk-demo:latest
     name: containerdisk

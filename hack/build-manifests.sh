@@ -22,6 +22,8 @@ set -e
 source hack/common.sh
 source hack/config.sh
 
+echo "(debug) entered manifests.sh"
+
 skipj2=false
 if [ "$1" == "--skipj2" ]; then
     skipj2=true
@@ -33,7 +35,11 @@ kubevirt_logo_path="assets/kubevirt_logo.png"
 rm -rf ${MANIFESTS_OUT_DIR}
 rm -rf ${MANIFEST_TEMPLATES_OUT_DIR}
 
+echo "(debug) entered manifests.sh 2, ${KUBEVIRT_DIR}/tools/manifest-templator/"
+
 (cd ${KUBEVIRT_DIR}/tools/manifest-templator/ && go_build)
+
+echo "(debug) entered manifests.sh 3"
 
 # first process file includes only
 args=$(cd ${KUBEVIRT_DIR}/manifests && find . -type f -name "*.yaml.in" -not -path "./generated/*")
